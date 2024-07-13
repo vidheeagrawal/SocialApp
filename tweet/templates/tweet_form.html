@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{ form.instance.id|yesno:"Edit Tweet,Create Tweet" }}
+{% endblock %}
+
+{% block content %}
+
+<h1 class="text-center text-white mt-3">{{ form.instance.id|yesno:"Edit Tweet,Create Tweet" }}</h1>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">{{ form.instance.id|yesno:"Update,Create" }}</button>
+</form>
+
+<a href="{% url 'tweet_list' %}">Back to Tweet list</a>
+
+{% endblock %}
